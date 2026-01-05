@@ -1,0 +1,978 @@
+{
+  "benchmark_info": {
+    "name": "Smart Home LLM-based Multi-Agent Benchmark",
+    "total_cases": 60
+  },
+  "test_cases":[
+    {
+      "id": "simple_01",
+      "category": "simple",
+      "user_input": "Help me find an Italian pasta recipe and see what ingredients I'm missing",
+      "required_intents": [
+        {"intent": "Find Italian pasta recipe", "device_type": "search"},
+        {"intent": "Identify missing ingredients", "device_type": "fridge"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Fridge obtains recipe information from search device"
+        ]
+      },
+      "expected_final_output": "The system explicitly lists the missing ingredients to the user"
+    },
+    {
+      "id": "simple_02",
+      "category": "simple",
+      "user_input": "What's in my fridge, and what can I make for dinner?",
+      "required_intents": [
+        {"intent": "Check ingredients in fridge", "device_type": "fridge"},
+        {"intent": "Find recipes", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains ingredient list from fridge device"
+        ]
+      },
+      "expected_final_output": "Available ingredients and recipe suggestions are provided"
+    },
+    {
+      "id": "simple_03",
+      "category": "simple",
+      "user_input": "I think I have some chicken breast in the fridge. What low-calorie meal can I make with it?",
+      "required_intents": [
+        {"intent": "Find low-calorie recipe using chicken breast", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Low-calorie chicken breast recipes are provided"
+    },
+    {
+      "id": "simple_04",
+      "category": "simple",
+      "user_input": "I want to bake cookies. Do I have all the ingredients I need?",
+      "required_intents": [
+        {"intent": "Find cookie recipe ingredients", "device_type": "search"},
+        {"intent": "Check fridge for required ingredients", "device_type": "fridge"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Fridge obtains cookie ingredient list from search device"
+        ]
+      },
+      "expected_final_output": "Confirmation of whether all ingredients for making cookies are available"
+    },
+    {
+      "id": "simple_05",
+      "category": "simple",
+      "user_input": "I'm going to study",
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for studying", "device_type": "light"},
+        {"intent": "Find focus music", "device_type": "search"},
+        {"intent": "Play focus music", "device_type": "audio"},
+        {"intent": "Adjust temperature for comfort", "device_type": "thermostat"}
+      ],
+      "note": "If audio is used, search should provide music recommendations",
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Study environment prepared"
+    },
+    {
+      "id": "simple_06",
+      "category": "simple",
+      "user_input": "play anything for 1 hour",
+      "required_intents": [
+        {"intent": "Play music", "device_type": "audio"},
+        {"intent": "Get music recommendations", "device_type": "search"},
+        {"intent": "Set an hour timer", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Audio obtains music recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Music playing with 1 hour timer set"
+    },
+    {
+      "id": "simple_07",
+      "category": "simple",
+      "user_input": "Set a 20 minutes timer for my laundry",
+      "required_intents": [
+        {"intent": "Set 20 minutes timer", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "20-minute timer set for laundry"
+    },
+    {
+      "id": "simple_08",
+      "category": "simple",
+      "user_input": "Are there any barbershops nearby?",
+      "required_intents": [
+        {"intent": "Find nearby barbershops", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Nearby barbershops listed"
+    },
+    {
+      "id": "simple_09",
+      "category": "simple",
+      "user_input": "Increase bedroom temperature",
+      "required_intents": [
+        {"intent": "Increase the bedroom temperature", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Bedroom temperature increased"
+    },
+    {
+      "id": "simple_10",
+      "category": "simple",
+      "user_input": "Add a 'Team Meeting' tomorrow at 10am",
+      "required_intents": [
+        {"intent": "Add calendar event", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Calendar event added"
+    },
+    {
+      "id": "simple_11",
+      "category": "simple",
+      "user_input": "I want to watch Stranger Things Season 3",
+      "required_intents": [
+        {"intent": "Play Stranger Things Season 3", "device_type": "display"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Stranger Things Season 3 playing on TV"
+    },
+    {
+      "id": "simple_12",
+      "category": "simple",
+      "user_input": "Play some classical music, but not too loud",
+      "required_intents": [
+        {"intent": "Find classical music", "device_type": "search"},
+        {"intent": "Play music at moderate volume", "device_type": "audio"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": "Audio obtains classical music recommendations from search device"
+      },
+      "expected_final_output": "Classical music playing at moderate volume"
+    },
+    {
+      "id": "simple_13",
+      "category": "simple",
+      "user_input": "Set the lights for reading",
+      "required_intents": [
+        {"intent": "Adjust the lights for reading", "device_type": "light"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Lights have been adjusted for reading"
+    },
+    {
+      "id": "simple_14",
+      "category": "simple",
+      "user_input": "What time does my next schedule begin?",
+      "required_intents": [
+        {"intent": "Check next event start time", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": "Calendar obtains current time from clock device"
+      },
+      "expected_final_output": "Next event start time provided"
+    },
+    {
+      "id": "simple_15",
+      "category": "simple",
+      "user_input": "It's so hot today, I'm going to cook lunch",
+      "acceptable_intents": [
+        {"intent": "Lower temperature", "device_type": "thermostat"},
+        {"intent": "Find lunch recipe", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Temperature adjusted and/or recipe suggestions provided"
+    },
+    {
+      "id": "simple_16",
+      "category": "simple",
+      "user_input": "Can you dim the bedroom lights and turn off the living room lights?",
+      "required_intents": [
+        {"intent": "Dim bedroom lights", "device_type": "light"},
+        {"intent": "Turn off living room lights", "device_type": "light"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Bedroom lights dimmed and living room lights turned off"
+    },
+    {
+      "id": "simple_17",
+      "category": "simple",
+      "user_input": "Can you show me my schedule on the tv screen?",
+      "required_intents": [
+        {"intent": "Retrieve schedule information", "device_type": "calendar"},
+        {"intent": "Display schedule on TV", "device_type": "display"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Schedule information is shared between calendar and display devices"
+        ]
+      },
+      "expected_final_output": "Schedule information displayed on tv"
+    },
+    {
+      "id": "simple_18",
+      "category": "simple",
+      "user_input": "Is there any food in the house that we can eat right now?",
+      "required_intents": [
+        {"intent": "Check available food inventory", "device_type": "fridge"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Available food list provided"
+    },
+    {
+      "id": "simple_19",
+      "category": "simple",
+      "user_input": "I need to sleep well and wake up on time",
+      "required_intents": [
+        {"intent": "Set wake-up alarm", "device_type": "clock"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Play gentle music", "device_type": "audio"},
+        {"intent": "Dim lights", "device_type": "light"},
+        {"intent": "Set a comfortable temperature for sleep", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": false,
+        "note": "If audio is used, search should provide gentle music recommendations"
+      },
+      "expected_final_output": "Alarm set and sleep environment prepared"
+    },
+    {
+      "id": "simple_20",
+      "category": "simple",
+      "user_input": "I'm having friends over for dinner soon, make the living room cozy",
+      "acceptable_intents": [
+        {"intent": "Play cozy music ", "device_type": "audio"},
+        {"intent": "Adjust light to make living room cozy", "device_type": "light"},
+        {"intent": "Set a comfortable temperature for cozy ambiance", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": false,
+        "note": "If audio is used, search should provide music recommendations"
+      },
+      "expected_final_output": "Cozy living room ambiance created"
+    },
+    {
+      "id": "moderate_01",
+      "category": "moderate",
+      "user_input": "I've just finished today's work, now I need to relax and check my tomorrow's schedule",
+      "required_intents": [
+        {"intent": "Check tomorrow's schedule", "device_type": "calendar"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Play relaxing music", "device_type": "audio"},
+        {"intent": "Set a comfortable temperature", "device_type": "thermostat"},
+        {"intent": "Set light for relaxing", "device_type": "light"}
+      ],
+      "note": "Calendar required. At least one relaxation device expected",
+      "collaboration": {
+        "is_needed": false,
+        "note": "If audio is used, search should provide music recommendations"
+      },
+      "expected_final_output": "Tomorrow's schedule provided and relaxation environment created"
+    },
+    {
+      "id": "moderate_02",
+      "category": "moderate",
+      "user_input": "I need to study for 45 minutes, brighten the light and play some focus music",
+      "required_intents": [
+        {"intent": "Brighten the light", "device_type": "light"},
+        {"intent": "Play focus music", "device_type": "audio"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Set 45 minutes timer", "device_type": "clock"},
+        {"intent": "Set a comfortable temperature for study", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": "Audio obtains focus music recommendations from search device"
+      },
+      "expected_final_output": "Light brightened and focus music is playing, optionally with 45-minute timer or temperature adjusted"
+    },
+    {
+      "id": "moderate_03",
+      "category": "moderate",
+      "user_input": "Find me a good chicken recipe based on what I have in the fridge, and show the recipe instructions on the TV",
+      "required_intents": [
+        {"intent": "Find chicken recipe", "device_type": "search"},
+        {"intent": "Check fridge inventory", "device_type": "fridge"},
+        {"intent": "Show recipe on the TV", "device_type": "display"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains ingredients from Fridge",
+          "Display device obtains recipe instructions from Search device"
+        ]
+      },
+      "expected_final_output": "Chicken recipe instructions shown on TV"
+    },
+    {
+      "id": "moderate_04",
+      "category": "moderate",
+      "user_input": "I want to make 'Chicken Alfredo', Check my fridge and tell me what I'm missing",
+      "required_intents": [
+        {"intent": "Find Chicken Alfredo recipe", "device_type": "search"},
+        {"intent": "Check available ingredients in fridge", "device_type": "fridge"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Fridge obtains recipe ingredients from Search device"
+        ]
+      },
+      "expected_final_output": "Missing ingredients for Chicken Alfredo provided"
+    },
+    {
+      "id": "moderate_05",
+      "category": "moderate",
+      "user_input": "Check the weather for tomorrow, and set a reminder to bring an umbrella if it's going to rain",
+      "required_intents": [
+        {"intent": "Check tomorrow's weather", "device_type": "search"},
+        {"intent": "Set umbrella reminder based on weather", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Calendar obtains tomorrow's weather forecast from Search"
+        ]
+      },
+      "expected_final_output": "Tomorrow's weather provided; Umbrella reminder set if rain is forecasted"
+    },
+    {
+      "id": "moderate_06",
+      "category": "moderate",
+      "user_input": "I'm going to cook, see what food is about to expire, and play some upbeat music",
+      "required_intents": [
+        {"intent": "Check what food is about to expire", "device_type": "fridge"},
+        {"intent": "Play upbeat music", "device_type": "audio"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Audio obtains music recommendations from Search device"
+        ]
+      },
+      "expected_final_output": "Food items about to expire listed, upbeat music playing"
+    },
+    {
+      "id": "moderate_07",
+      "category": "moderate",
+      "user_input": "Set a wake-up alarm for tomorrow 7 AM, remind me to 'Call Mom' tonight, and also start a 10-minute timer for the coffee",
+      "required_intents": [
+        {"intent": "Set alarm at 7 AM", "device_type": "clock"},
+        {"intent": "Add 'Call Mom' reminder for tonight", "device_type": "calendar"},
+        {"intent": "Set 10-minute timer", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "7 AM alarm set, 'Call Mom' reminder added, and 10-minute timer started"
+    },
+    {
+      "id": "moderate_08",
+      "category": "moderate",
+      "user_input": "I just got home from work and feel exhausted. The room feels too cold and dark",
+      "required_intents": [
+        {"intent": "Brighten light", "device_type": "light"},
+        {"intent": "Increase room temperature", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Lights brightened, room warmed, and relaxing environment created"
+    },
+    {
+      "id": "moderate_09",
+      "category": "moderate",
+      "user_input": "The house feels stuffy and uncomfortable. I want to adjust the environment and maybe play some music",
+      "required_intents": [
+        {"intent": "Adjust temperature", "device_type": "thermostat"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for comfort", "device_type": "light"},
+        {"intent": "Play background music", "device_type": "audio"}
+      ],
+      "collaboration": {
+        "is_needed": false,
+        "note": "If audio is used, search should provide music recommendations"
+      },
+      "expected_final_output": "Environment adjusted for comfort with improved temperature and optionally music playing"
+    },
+    {
+      "id": "moderate_10",
+      "category": "moderate",
+      "user_input": "I'm feeling lonely and bored. I want some entertainment and want a cozy environment, but please keep it quiet",
+      "required_intents": [
+        {"intent": "Provide entertainment", "device_type": "display"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for cozy ambiance", "device_type": "light"},
+        {"intent": "Set comfortable temperature", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Entertainment provided with cozy quiet environment"
+    },
+    {
+      "id": "moderate_11",
+      "category": "moderate",
+      "user_input": "I'm feeling sick today and need to rest. The room should be comfortable, but there's no need to adjust the temperature",
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for rest", "device_type": "light"},
+        {"intent": "Play soothing music", "device_type": "audio"}
+      ],
+      "collaboration": {
+        "is_needed": false,
+        "note": "If audio is used, search should provide soothing/healing music recommendations"
+    },
+      "expected_final_output": "Comfortable rest environment created"
+    },
+    {
+      "id": "moderate_12",
+      "category": "moderate",
+      "user_input": "Display the refrigerator's inventory on the screen, then show tomorrow's schedule",
+      "required_intents": [
+        {"intent": "Check food inventory", "device_type": "fridge"},
+        {"intent": "Display food inventory on the screen", "device_type": "display"},
+        {"intent": "Check tomorrow's schedule", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Display obtains food inventory from fridge",
+          "Display obtains schedule information from calendar"
+        ]
+      },
+      "expected_final_output": "Fridge inventory and tomorrow's schedule displayed on screen"
+    },
+    {
+      "id": "moderate_13",
+      "category": "moderate",
+      "user_input": "Turn on the light in the living room, show me some TV shows and set a one-hour countdown timer for watching TV",
+      "required_intents": [
+        {"intent": "Turn on the living room light", "device_type": "light"},
+        {"intent": "Show TV shows", "device_type": "display"},
+        {"intent": "Set one-hour timer", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Display device obtains tv shows recommendations from search"
+        ]
+      },
+      "expected_final_output": "Living room light on, TV shows displayed, and one-hour timer set"
+    },
+    {
+      "id": "moderate_14",
+      "category": "moderate",
+      "user_input": "I'm feeling overwhelmed with my schedule. Show me what's coming up and help me prepare",
+      "required_intents": [
+        {"intent": "Show upcoming events", "device_type": "calendar"},
+        {"intent": "Find preparation information for events", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains upcoming event details from calendar to provide preparation suggestions"
+        ]
+      },
+      "expected_final_output": "Upcoming events displayed with preparation information provided"
+    },
+    {
+      "id": "moderate_15",
+      "category": "moderate",
+      "user_input": "Play some jazz music, watch yoga practice videos, and then turn down the temperature a bit",
+      "required_intents": [
+        {"intent": "Play jazz music", "device_type": "audio"},
+        {"intent": "Watch yoga practice videos", "device_type": "display"},
+        {"intent": "Turn down the temperature", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Audio device obtains jazz music recommendations from search device",
+          "Display device obtains yoga videos recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Jazz music playing, yoga videos displayed, and temperature lowered"
+    },
+    {
+      "id": "moderate_16",
+      "category": "moderate",
+      "user_input": "I'd like to rest for a bit. Please wake me up before the next appointment",
+      "required_intents": [
+        {"intent": "Set alarm before next appointment", "device_type": "clock"},
+        {"intent": "Check next appointment begin time", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Clock obtains next appointment begin time from calendar"
+        ]
+      },
+      "expected_final_output": "Alarm set to wake user before next appointment"
+    },
+    {
+      "id": "moderate_17",
+      "category": "moderate",
+      "user_input": "I'm trying to cook dinner, but I don't know what's in the fridge. I need some quick recipe ideas",
+      "required_intents": [
+        {"intent": "Check available food in fridge", "device_type": "fridge"},
+        {"intent": "Search quick food recipes", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains available food information from fridge"
+        ]
+      },
+      "expected_final_output": "Quick recipes suggested using available ingredients"
+    },
+    {
+      "id": "moderate_18",
+      "category": "moderate",
+      "user_input": "I'm craving pasta. Check if we have enough ingredients in the fridge. If anything's missing, please list it",
+      "required_intents": [
+        {"intent": "Check available ingredients for pasta in fridge", "device_type": "fridge"},
+        {"intent": "Search pasta recipes", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Fridge obtains pasta recipes ingredients from search device"
+        ]
+      },
+      "expected_final_output": "Available ingredients checked and missing pasta ingredients listed"
+    },
+    {
+      "id": "moderate_19",
+      "category": "moderate",
+      "user_input": "Show a movie, turn off the light and adjust the living room ambiance",
+      "required_intents": [
+        {"intent": "Show movie", "device_type": "display"},
+        {"intent": "Turn off light", "device_type": "light"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for ambiance", "device_type": "light"},
+        {"intent": "Adjust temperature for ambiance", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Display device obtains movie recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Movie playing with lights off and comfortable ambiance"
+    },
+    {
+      "id": "moderate_20",
+      "category": "moderate",
+      "user_input": "Please make the lights brighter, play the 'Focus' playlist, and what do I have scheduled an hour from now?",
+      "required_intents": [
+        {"intent": "Brighten lights", "device_type": "light"},
+        {"intent": "Play 'Focus' playlist", "device_type": "audio"},
+        {"intent": "Check schedule one hour from now", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "Lights brightened, Focus playlist playing, and upcoming schedule shown"
+    },
+    {
+      "id": "complex_01",
+      "category": "complex",
+      "user_input": "I want to cook the chicken from the fridge. Find a recipe, display the details on the TV, and set a 15-minute timer for the first step",
+      "required_intents": [
+        {"intent": "Find chicken recipe", "device_type": "search"},
+        {"intent": "Display recipe details on TV", "device_type": "display"},
+        {"intent": "Set 15-minute timer", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Display obtains recipe details from search device"
+        ]
+      },
+      "expected_final_output": "Chicken recipe displayed on TV and 15-minute timer set for first step"
+    },
+    {
+      "id": "complex_02",
+      "category": "complex",
+      "user_input": "I'm planning a dinner party for this Friday night. First, check my calendar to see if I'm free. If I am, check the fridge for what I have, and then search for suitable dinner party recipes",
+      "required_intents": [
+        {"intent": "Check Friday night availability", "device_type": "calendar"},
+        {"intent": "Check fridge inventory if Friday free", "device_type": "fridge"},
+        {"intent": "Search dinner party recipes if Friday free", "device_type": "search"}
+      ],
+      "note": "Conditional logic: fridge and search tasks depend on calendar showing user is free",
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains available ingredients from fridge device"
+        ]
+      },
+      "expected_final_output": "Calendar checked; If free, dinner party recipes suggested based on fridge inventory"
+    },
+    {
+      "id": "complex_03",
+      "category": "complex",
+      "user_input": "I'm getting ready for bed. Play some relaxing 'sleep' sounds, dim all the lights, and set an alarm for 7 AM tomorrow",
+      "required_intents": [
+        {"intent": "Play relaxing sleep sounds", "device_type": "audio"},
+        {"intent": "Dim all lights", "device_type": "light"},
+        {"intent": "Set 7 AM alarm for tomorrow", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Audio obtains sleep sounds recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Relaxing sleep sounds playing, lights dimmed, and 7 AM alarm set"
+    },
+    {
+      "id": "complex_04",
+      "category": "complex",
+      "user_input": "Please turn on the bedroom lights, tell me my today's first meeting details, and what's the weather like? If it rains, remind me to bring an umbrella",
+      "required_intents": [
+        {"intent": "Turn on bedroom lights", "device_type": "light"},
+        {"intent": "Check today's first meeting details", "device_type": "calendar"},
+        {"intent": "Check today's weather", "device_type": "search"},
+        {"intent": "Set umbrella reminder if rain forecasted", "device_type": "calendar"}
+      ],
+      "note": "Calendar reminder is conditional on rain forecast from search",
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Calendar obtains weather information from search device to determine reminder"
+        ]
+      },
+      "expected_final_output": "Bedroom lights on, first meeting details provided, weather checked, and umbrella reminder set if rain forecasted"
+    },
+    {
+      "id": "complex_05",
+      "category": "complex",
+      "user_input": "Find me a lasagna recipe, check if I have ground beef in the fridge, show the instructions on the screen, and set a timer for 1 hour",
+      "required_intents": [
+        {"intent": "Find lasagna recipe", "device_type": "search"},
+        {"intent": "Check for ground beef in fridge", "device_type": "fridge"},
+        {"intent": "Display recipe instructions on screen", "device_type": "display"},
+        {"intent": "Set one-hour timer", "device_type": "clock"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Display obtains lasagna recipe from search device"
+        ]
+      },
+      "expected_final_output": "Lasagna recipe displayed on screen, ground beef availability confirmed, and one-hour timer set"
+    },
+    {
+      "id": "complex_06",
+      "category": "complex",
+      "user_input": "I'm recovering from surgery and need to rest. Make the home comfortable, remind me about medication every 4 hours, suggest easy meals I can prepare, show me something entertaining, and track my doctor's appointment tomorrow",
+      "required_intents": [
+        {"intent": "Set medication reminder every 4 hours", "device_type": "clock"},
+        {"intent": "Search easy meal suggestions", "device_type": "search"},
+        {"intent": "Show entertainment", "device_type": "display"},
+        {"intent": "Check tomorrow's doctor appointment", "device_type": "calendar"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust light for rest", "device_type": "light"},
+        {"intent": "Adjust temperature for rest", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Display obtains entertainment recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Comfortable environment created, medication reminders set, easy meals suggested, entertainment displayed, and doctor appointment confirmed"
+    },
+    {
+      "id": "complex_07",
+      "category": "complex",
+      "user_input": "I'm training for a marathon and need structure. Wake me at 5:30am, show my training schedule, play motivating music, set a timer for 5 min, and remind me about proper meal times",
+      "required_intents": [
+        {"intent": "Set 5:30 AM wake-up alarm", "device_type": "clock"},
+        {"intent": "Show training schedule", "device_type": "calendar"},
+        {"intent": "Play motivating music", "device_type": "audio"},
+        {"intent": "Set 5-minute timer", "device_type": "clock"},
+        {"intent": "Set meal time reminders", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Audio obtains motivating music recommendations from search device"
+        ]
+      },
+      "expected_final_output": "5:30 AM alarm set, training schedule shown, motivating music playing, 5-minute timer set, and meal reminders set"
+    },
+    {
+      "id": "complex_08",
+      "category": "complex",
+      "user_input": "The weather forecast says it's going to be cold tonight. I want to stay warm and cozy to watch a movie, and I should also check what I can make for dinner",
+      "required_intents": [
+        {"intent": "Cozy movie night", "device_type": "thermostat"},
+        {"intent": "Check fridge for dinner ingredients", "device_type": "fridge"},
+        {"intent": "Search dinner recipes", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Search obtains available ingredients from fridge device for dinner recipes"
+        ]
+      },
+      "expected_final_output": "Temperature increased, movie playing, dinner recipe suggestions based on fridge contents, and cozy atmosphere created"
+    },
+    {
+      "id": "complex_09",
+      "category": "complex",
+      "user_input": "I'm feeling really stressed and can't concentrate. I need a better working environment, some background music, and I should also check when my next deadline is",
+      "required_intents": [
+        {"intent": "Play background music", "device_type": "audio"},
+        {"intent": "Check next deadline", "device_type": "calendar"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for work", "device_type": "light"},
+        {"intent": "Adjust temperature for comfort", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_condition": [
+          "Audio obtains background music recommendations from search device",
+          "Calendar obtains current time from clock"
+        ]
+      },
+      "expected_final_output": "Working environment optimized, background music playing, and next deadline provided"
+    },
+    {
+      "id": "complex_10",
+      "category": "complex",
+      "user_input": "My friends are staying over for the weekend. I need to plan meals for those days and check if I have enough food in the fridge, then list the ingredients for some simple and quick meals",
+      "required_intents": [
+        {"intent": "Check fridge inventory", "device_type": "fridge"},
+        {"intent": "Search simple quick meal recipes", "device_type": "search"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains available food information from fridge device"
+        ]
+      },
+      "expected_final_output": "Fridge inventory checked and simple quick meal recipes with ingredient lists provided"
+    },
+    {
+      "id": "complex_11",
+      "category": "complex",
+      "user_input": "I just got home from work and I'm feeling exhausted. The weather forecast says it's going to be cold tonight. I want to create a cozy atmosphere for relaxation",
+      "required_intents": [
+        {"intent": "Increase temperature for cold night", "device_type": "thermostat"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for cozy atmosphere", "device_type": "light"},
+        {"intent": "Play relaxing music", "device_type": "audio"}
+      ],
+      "collaboration": {
+        "is_needed": false,
+        "note": "If audio is used, search should provide relaxing music recommendations"
+      },
+      "expected_final_output": "Cozy relaxing atmosphere created with warmth and appropriate lighting or music"
+    },
+    {
+      "id": "complex_12",
+      "category": "complex",
+      "user_input": "I'm working on an important deadline tonight. I need optimal lighting and temperature, some focus music, then check what time is my project deadline",
+      "required_intents": [
+        {"intent": "Adjust lighting for optimal work", "device_type": "light"},
+        {"intent": "Adjust temperature for comfort", "device_type": "thermostat"},
+        {"intent": "Play focus music", "device_type": "audio"},
+        {"intent": "Check project deadline time", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Audio obtains focus music recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Optimal working environment with lighting and temperature, focus music playing, and project deadline time provided"
+    },
+    {
+      "id": "complex_13",
+      "category": "complex",
+      "user_input": "I'm babysitting my nieces tomorrow. Check what kid-friendly food I have, suggest meal ideas, help me plan activities, show appropriate entertainment, and remind me of their nap time at 2pm",
+      "required_intents": [
+        {"intent": "Check kid-friendly food in fridge", "device_type": "fridge"},
+        {"intent": "Search kid-friendly meal ideas", "device_type": "search"},
+        {"intent": "Search kid activity ideas", "device_type": "search"},
+        {"intent": "Show kid-appropriate entertainment", "device_type": "display"},
+        {"intent": "Set 2 PM nap time reminder", "device_type": "clock or calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Display obtains kid-appropriate entertainment from search device"
+        ]
+      },
+      "expected_final_output": "Kid-friendly meals checked, activity ideas provided, entertainment displayed, and 2 PM nap reminder set"
+    },
+    {
+      "id": "complex_14",
+      "category": "complex",
+      "user_input": "Check my schedule for tomorrow and see if I have any free time. If I do, pick a hair salon for me and add this to my schedule",
+      "required_intents": [
+        {"intent": "Check tomorrow's schedule for free time", "device_type": "calendar"},
+        {"intent": "Search for hair salon if I'm free", "device_type": "search"},
+        {"intent": "Add hair salon appointment to schedule if I'm free", "device_type": "calendar"}
+      ],
+      "note": "Search and adding appointment are conditional on finding free time",
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search determines appropriate time based on calendar free slots",
+          "Calendar adds salon appointment from search results"
+        ]
+      },
+      "expected_final_output": "Tomorrow's schedule checked; If free time available, hair salon found and appointment added to schedule"
+    },
+    {
+      "id": "complex_15",
+      "category": "complex",
+      "user_input": "I'm hosting Thanksgiving dinner and getting overwhelmed. Show me recipes based on what I have, set the festival ambiance, and play appropriate music",
+      "required_intents": [
+        {"intent": "Check fridge inventory", "device_type": "fridge"},
+        {"intent": "Search Thanksgiving recipes", "device_type": "search"},
+        {"intent": "Play Thanksgiving music", "device_type": "audio"}
+      ],
+      "acceptable_intents": [
+        {"intent": "Adjust lighting for festival ambiance", "device_type": "light"},
+        {"intent": "Adjust temperature for comfort", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Search obtains fridge inventory for recipe suggestions",
+          "Audio obtains Thanksgiving music recommendations from search device"
+        ]
+      },
+      "expected_final_output": "Thanksgiving recipes based on fridge contents provided, festival ambiance set, and appropriate music playing"
+    },
+    {
+      "id": "complex_16",
+      "category": "complex",
+      "user_input": "Check the fridge for milk. If there's milk, add an event to tomorrow's schedule: ‘Go to the supermarket at 5 PM to buy cereal.’ If there's no milk, add an event: 'Go to the supermarket at 5 PM to buy milk and cereal'",
+      "required_intents": [
+        {"intent": "Check for milk in fridge", "device_type": "fridge"},
+        {"intent": "Add shopping event to tomorrow's schedule", "device_type": "calendar"}
+      ],
+      "note": "Calendar event content is conditional on fridge milk availability",
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Calendar obtains milk availability from fridge to determine shopping list"
+        ]
+      },
+      "expected_final_output": "Milk checked; Shopping event added to tomorrow at 5 PM with appropriate items based on milk availability"
+    },
+    {
+      "id": "complex_17",
+      "category": "complex",
+      "user_input": "I want to watch tv show for an hour, and set the living room to 24 degrees for two hours, then show me tomorrow's schedule before I go to bed",
+      "required_intents": [
+        {"intent": "Watch TV show", "device_type": "display"},
+        {"intent": "Set one-hour timer for TV", "device_type": "clock"},
+        {"intent": "Set living room to 24 degrees", "device_type": "thermostat"},
+        {"intent": "Set two-hour timer for temperature", "device_type": "clock"},
+        {"intent": "Show tomorrow's schedule", "device_type": "calendar"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Display obtains TV show recommendations from search device"
+        ]
+      },
+      "expected_final_output": "TV show playing with one-hour timer, living room set to 24 degrees for two hours, and tomorrow's schedule displayed"
+    },
+    {
+      "id": "complex_18",
+      "category": "complex",
+      "user_input": "Remind me in ten minutes to close the refrigerator door. If the light in kitchen is still on, then turn it off",
+      "required_intents": [
+        {"intent": "Set 10-minute reminder to close fridge door", "device_type": "clock"},
+        {"intent": "Turn off kitchen light if on", "device_type": "light"}
+      ],
+      "note": "Light action is conditional on light status check",
+      "collaboration": {
+        "is_needed": false
+      },
+      "expected_final_output": "10-minute reminder set for closing fridge; Kitchen light turned off if it was on"
+    },
+    {
+      "id": "complex_19",
+      "category": "complex",
+      "user_input": "The weather's awful today. Check the outdoor temperature for me, then set the indoor temperature a bit warmer than outside",
+      "required_intents": [
+        {"intent": "Check outdoor temperature", "device_type": "search"},
+        {"intent": "Set indoor temperature warmer than outside", "device_type": "thermostat"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Thermostat obtains outdoor temperature from search device to calculate indoor setting"
+        ]
+      },
+      "expected_final_output": "Outdoor temperature checked and indoor temperature set warmer accordingly"
+    },
+    {
+      "id": "complex_20",
+      "category": "complex",
+      "user_input": "I'm trying to establish a bedtime routine. I want the lights to dim gradually starting at 10pm. Keep the temperature as it is now. Also play some quiet sounds to help me sleep",
+      "required_intents": [
+        {"intent": "Dim the lights gradually at 10 PM", "device_type": "light"},
+        {"intent": "Search for quiet sleep sounds", "device_type": "search"},
+        {"intent": "Play quiet sleep sounds", "device_type": "audio"}
+      ],
+      "collaboration": {
+        "is_needed": true,
+        "success_conditions": [
+          "Audio obtains sound recommendations from search device",
+          "Light need Clock help for dim lights gradually at 10pm"
+        ]
+      },
+      "expected_final_output": "Lights scheduled to dim gradually at 10 PM, quiet sounds playing, and temperature remains unchanged"
+    }
+  ]
+}
