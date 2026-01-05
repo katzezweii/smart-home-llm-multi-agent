@@ -1,4 +1,4 @@
-# Bachelor Thesis: LLM-based Smart Home Multi-Agent System
+# Bachelor Thesis for Zeyi Sun
 
 This repository contains the implementation and benchmark for my Bachelor Thesis: **"Centralized Task Planning and Dynamic Device Collaboration in LLM-based Multi-Agent Smart Home Systems"**
 
