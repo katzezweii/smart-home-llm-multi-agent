@@ -75,17 +75,17 @@ Logs are saved in `logs/` directory.
 2. **Task Planner**
    - Decomposes intents into device-level tasks
    - Creates task queue with detailed actions
-   - Does NOT predict collaboration (agents decide autonomously)
+   - Does not predict collaboration in task queue
 
 3. **Device Agents** (8 specialized agents):
-   - **clock** - Time management, alarms, timers, stopwatch
-   - **calendar** - Schedule and appointment management
+   - **clock** - Alarms, timers, stopwatch
+   - **calendar** - Add schedule and appointment, Schedule Information (time, location, etc.)
    - **search_engine** - Information retrieval, recipes, weather
    - **tv_display** - Visual content display
    - **fridge** - Food inventory tracking
    - **lighting** - Light control and atmosphere creation
-   - **thermostat** - Temperature and climate control
-   - **audio_system** - Music playback and volume control
+   - **thermostat** - Temperature control and atmosphere creation
+   - **audio_system** - Music playback and volume control, atmosphere creation
 
 
 ## Technical Details
