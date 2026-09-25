@@ -1,4 +1,5 @@
-# Bachelor Thesis for Zeyi Sun
+
+# Centralized Task Planning and Dynamic Device Collaboration in LLM-based Multi-Agent Smart Home Systems
 
 This repository contains the implementation and benchmark for my Bachelor Thesis: **"Centralized Task Planning and Dynamic Device Collaboration in LLM-based Multi-Agent Smart Home Systems"**
 
@@ -37,3 +38,5 @@ bachelorarbeit/
 * Model: gemma2:latest (9B parameters)
 
 * Development Environment: Python 3.11 on MacBook Air (M4)
+  
+# Bachelor Thesis for Zeyi Sun
